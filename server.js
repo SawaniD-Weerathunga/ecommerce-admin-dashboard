@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const sequelize = require('./config/database');
+
+const {sequelize} = require('./models');
 
 const app = express();
 
@@ -18,6 +19,8 @@ const PORT = process.env.PORT || 3000;
 const startServer = async () => {
   try {
     await sequelize.authenticate();
+    await sequelize.sync({ alter: true });
+    console.log('✅ Database Tables synchronized successfully.');
     console.log('✅ Database connected successfully.');
     
     app.listen(PORT, () => {
