@@ -3,6 +3,8 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
+const setupAdmin = require('./admin/adminSetup');
+
 const {sequelize, User} = require('./models');
 const authRoutes = require('./routes/authRoutes');
 
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/api', authRoutes);
+
+setupAdmin(app);
 
 app.get('/', (req, res) => {
   res.send('eCommerce Admin Backend is running!');
