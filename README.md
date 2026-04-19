@@ -124,7 +124,11 @@ npm start
 ## 📸 Screenshots
 
 **1. Login & Registration**
+
+Welcome Page
 ![Welcome Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/welcome%20page.png)
+
+Login Page
 ![Login Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/Login%20page.png)
 ![Registration Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/registration%20page.png)
 
@@ -140,10 +144,7 @@ npm start
 ![User Dashboard](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/user%20dashboard.png)
 ![User Dashboard - Categories Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/user%20dahboard%20-%20category%20page.png)
 
-**4. Resource Management (Products & Relationships)**
-![Products Management](Insert_Image_Link_Here)
-
-**5. Settings Management**
+**4. Settings Management**
 ![Settings Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/Settings.png)
 
 ---
