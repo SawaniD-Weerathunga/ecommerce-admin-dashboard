@@ -3,6 +3,7 @@ const AdminJSExpress = require('@adminjs/express');
 const AdminJSSequelize = require('@adminjs/sequelize');
 const bcrypt = require('bcrypt');
 const {sequelize, User, Category, Product, Order, OrderItem, Setting} = require('../models');
+const { act } = require('react');
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -13,6 +14,12 @@ const canAdminAccess = ({currentAdmin}) => {
 const adminOnlyActions = {
     list: {isAccessible: canAdminAccess},
     show: {isAccessible: canAdminAccess},
+    new: {isAccessible: canAdminAccess},
+    edit: {isAccessible: canAdminAccess},
+    delete: {isAccessible: canAdminAccess},
+}
+
+const readOnlyForUserActions = {
     new: {isAccessible: canAdminAccess},
     edit: {isAccessible: canAdminAccess},
     delete: {isAccessible: canAdminAccess},
@@ -69,10 +76,23 @@ const setupAdmin = async(app) => {
                     actions: adminOnlyActions,
                 }   
             },
-            Category,
-            Product,
-            Order,
-            OrderItem,
+            
+            {
+                resource: Category,
+                options: {actions: readOnlyForUserActions}
+            },
+            {
+                resource: Product,
+                options: {actions: readOnlyForUserActions}
+            },
+            {
+                resource: Order,
+                options: {actions: readOnlyForUserActions}
+            },
+            {
+                resource: OrderItem,
+                options: {actions: readOnlyForUserActions}
+            },
         ],
 
         branding: {
