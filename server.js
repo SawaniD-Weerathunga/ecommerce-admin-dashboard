@@ -35,15 +35,18 @@ const startServer = async() => {
 
     const adminExists = await User.findOne({where: {email: 'admin@example.com'}});
     if (!adminExists) {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
       await User.create({
         email: 'admin@example.com',
-        password: hashedPassword,
+        password: 'admin123',
         role: 'admin'
       });
 
       console.log('Default admin user created: admin@example.com / admin123');
 
+    } else{
+      adminExists.password = 'admin123';
+      await adminExists.save();
+      console.log('Default admin user password reset to: admin123');
     }
     
     app.listen(PORT, () => {
