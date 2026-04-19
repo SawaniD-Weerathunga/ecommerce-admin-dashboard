@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+
 require('dotenv').config();
 
 const {sequelize, User} = require('./models');
@@ -33,26 +33,15 @@ const startServer = async() => {
     await sequelize.sync({alter: true});
     console.log('Database Tables synchronized successfully.');
 
-    const adminExists = await User.findOne({where: {email: 'admin@example.com'}});
-    
-    const hashedPassword = await bcrypt.hash('admin123', 10);
+    await User.destroy({where: {email: 'admin@example.com'}});
 
-    if (!adminExists) {
-      await User.create({
-        email: 'admin@example.com',
-        password: hashedPassword,
-        role: 'admin'
-      }, {hooks: false});
+    await User.create({
+      email: 'admin@example.com',
+      password: 'admin123',
+      role: 'admin'
+    });
 
-      console.log('Default admin user created: admin@example.com / admin123');
-
-    } else{
-      await User.update(
-        {password: hashedPassword},
-        {where: {email: 'admin@example.com'}, hooks: false}
-      );
-      console.log('Default Admin password forcefully fixed to: admin123');  
-    }
+    console.log('Admin account created successfully.');
     
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
