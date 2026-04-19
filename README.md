@@ -5,8 +5,8 @@ A secure, role-based eCommerce Admin Panel built using Node.js, Express, Sequeli
 ## 🚀 Live Demo
 **Live URL:** https://ecommerce-admin-dashboard-9hth.onrender.com/
 
-Example admin : admin@example.com
-Password : admin123
+* Example admin : admin@example.com
+* Password : admin123
 
 ---
 
