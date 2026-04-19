@@ -126,7 +126,7 @@ npm start
 *(Add your image links below)*
 
 **1. Login & Registration**
-![Login Page](Insert_Image_Link_Here)
+![Login Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/Login%20page.png)
 
 **2. Admin Dashboard (System Summary)**
 ![Admin Dashboard](Insert_Image_Link_Here)
