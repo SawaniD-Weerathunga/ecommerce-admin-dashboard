@@ -34,19 +34,24 @@ const startServer = async() => {
     console.log('Database Tables synchronized successfully.');
 
     const adminExists = await User.findOne({where: {email: 'admin@example.com'}});
+    
+    const hashedPassword = await bcrypt.hash('admin123', 10);
+
     if (!adminExists) {
       await User.create({
         email: 'admin@example.com',
-        password: 'admin123',
+        password: hashedPassword,
         role: 'admin'
-      });
+      }, {hooks: false});
 
       console.log('Default admin user created: admin@example.com / admin123');
 
     } else{
-      adminExists.password = 'admin123';
-      await adminExists.save();
-      console.log('Default admin user password reset to: admin123');
+      await User.update(
+        {password: hashedPassword},
+        {where: {email: 'admin@example.com'}, hooks: false}
+      );
+      console.log('Default Admin password forcefully fixed to: admin123');  
     }
     
     app.listen(PORT, () => {
