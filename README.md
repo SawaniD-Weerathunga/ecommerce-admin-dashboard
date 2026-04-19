@@ -130,18 +130,36 @@ Welcome Page
 
 Login Page
 ![Login Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/Login%20page.png)
+
+Registration Page
 ![Registration Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/registration%20page.png)
 
 **2. Admin Dashboard (System Summary)**
+
+Admin Dashboard
 ![Admin Dashboard](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/admin%20dashboard.png)
+
+Users
 ![Users](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/Users.png)
+
+Categories
 ![Categories](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/categories.png)
+
+Products
 ![Products](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/products.png)
+
+Orders
 ![Orders](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/orders.png)
+
+Order Items
 ![Order Items](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/order%20items.png)
 
 **3. User Dashboard (Recent Orders)**
+
+User Dashboard
 ![User Dashboard](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/user%20dashboard.png)
+
+User Dashboard - Categories Page
 ![User Dashboard - Categories Page](https://github.com/SawaniD-Weerathunga/ecommerce-admin-dashboard/blob/main/screenshots/user%20dahboard%20-%20category%20page.png)
 
 **4. Settings Management**
@@ -150,7 +168,8 @@ Login Page
 ---
 
 ## 👨‍💻 Author
-**Sawani Dilmini Weerathunga**
-```
 
-***
+**Sawani Weerathunga**
+
+* GitHub: https://github.com/SawaniD-Weerathunga
+* LinkedIn: https://www.linkedin.com/in/sawani-weerathunga-507a55348/
