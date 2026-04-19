@@ -22,6 +22,34 @@ const setupAdmin = async(app) => {
     const admin = new AdminJS({
         databases: [sequelize],
         rootPath: '/admin',
+
+        dashboard: {
+            handler: async (request, response, context) => {
+                const {currentAdmin} = context;
+
+                if(currentAdmin && currentAdmin.role === 'admin'){
+                    const usersCount = await User.count();
+                    const productsCount = await Product.count();
+                    const ordersCount = await Order.count();
+
+                    return {
+                        role: 'admin',
+                        email: currentAdmin.email,
+                        usersCount,
+                        productsCount,
+                        ordersCount
+                    };
+                }
+
+                return {
+                    role: 'user',
+                    email: currentAdmin ? currentAdmin.email : 'Unknown'
+                };
+            },
+
+            component: AdminJS.bundle('./components/Dashboard.jsx') 
+        },
+
         resources: [
             {
                 resource: User,
