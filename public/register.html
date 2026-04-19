@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eCommerce - Sign Up</title>
+  <style>
+    body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f5f7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;}
+    .register-box {background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 400px;}
+    h2 {text-align: center; color: #333; margin-top: 0;}
+    .form-group { margin-bottom: 20px; }
+    label {display: block; margin-bottom: 8px; color: #555; font-weight: bold;}
+    input {width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;}
+    button {width: 100%; padding: 12px; background-color: #4169E1; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background 0.3s;}
+    button:hover {background-color: #27408B;}
+    .message {text-align: center; margin-top: 15px; font-weight: bold;}
+    .success {color: green;}
+    .error {color: red;}
+    .login-link {text-align: center; margin-top: 20px; display: block; text-decoration: none; color: #4169E1;}
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h2>Create an Account</h2>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="Create a password">
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div id="message" class="message"></div>
+    <a href="/admin" class="login-link">Already have an account? Go to Login</a>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const messageDiv = document.getElementById('message');
+
+      messageDiv.textContent = 'Registering...';
+      messageDiv.className = 'message';
+
+      try{
+        const response = await fetch('/api/register',{
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, password})
+        });
+
+        const data = await response.json();
+
+        if(response.ok) {
+          messageDiv.textContent = 'Success! Redirecting to login...';
+          messageDiv.className = 'message success';
+          setTimeout(() => {window.location.href = '/admin';}, 2000); // තත්පර 2කින් Login එකට යවනවා
+        } else {
+          messageDiv.textContent = data.message || 'Registration failed!';
+          messageDiv.className = 'message error';
+        }
+      } catch(error) {
+        messageDiv.textContent = 'Server error. Please try again.';
+        messageDiv.className = 'message error';
+      }
+    });
+  </script>
+
+</body>
+</html>
