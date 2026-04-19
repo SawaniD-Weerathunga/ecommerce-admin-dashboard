@@ -46,14 +46,19 @@ const startServer = async() => {
 
     }
     
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
-    });
+    if (process.env.NODE_ENV === 'production') {
+      app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+      });
+    }
+
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
 };
 
 startServer();
+
+module.exports = app;
 
 
