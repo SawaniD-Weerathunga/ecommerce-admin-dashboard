@@ -3,20 +3,20 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const setupAdmin = require('./admin/adminSetup');
-
 const {sequelize, User} = require('./models');
 const authRoutes = require('./routes/authRoutes');
+const setupAdmin = require('./admin/adminSetup');
 
 const app = express();
 
 app.use(cors());
+
+setupAdmin(app);
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/api', authRoutes);
-
-setupAdmin(app);
 
 app.get('/', (req, res) => {
   res.send('eCommerce Admin Backend is running!');
@@ -44,7 +44,6 @@ const startServer = async() => {
       console.log('Default admin user created: admin@example.com / admin123');
 
     }
-    
     
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
