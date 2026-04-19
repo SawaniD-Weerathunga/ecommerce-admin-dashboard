@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize');
 require('dotenv').config();
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isCloudDB = process.env.DB_HOST && process.env.DB_HOST !== 'localhost';
 
 const sequelize = new Sequelize(
     process.env.DB_NAME, 
@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
         host: process.env.DB_HOST,
         dialect: 'postgres',
         logging: false,
-        dialectOptions: isProduction ? {
+        dialectOptions: isCloudDB ? {
             ssl: {
                 require: true,
                 rejectUnauthorized: false
