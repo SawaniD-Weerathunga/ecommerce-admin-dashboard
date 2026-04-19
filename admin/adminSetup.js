@@ -4,6 +4,7 @@ const AdminJSSequelize = require('@adminjs/sequelize');
 const bcrypt = require('bcrypt');
 const {sequelize, User, Category, Product, Order, OrderItem, Setting} = require('../models');
 const { act } = require('react');
+const { or } = require('sequelize');
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -48,10 +49,21 @@ const setupAdmin = async(app) => {
                     };
                 }
 
-                return {
-                    role: 'user',
-                    email: currentAdmin ? currentAdmin.email : 'Unknown'
-                };
+                if (currentAdmin){
+                    const userOrders = await Order.findAll({
+                        where: {userId: currentAdmin.id},
+                        limit: 5,
+                        order: [['createdAt', 'DESC']],
+                    });
+
+                    return {
+                        role: 'user',
+                        email: currentAdmin.email,
+                        orders: userOrders
+                    };
+                }
+
+                return {role: 'guest'};
             },
 
             component: AdminJS.bundle('./components/Dashboard.jsx') 
